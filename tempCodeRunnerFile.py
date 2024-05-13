@@ -1,0 +1,1 @@
+return get_dir, get_img_size
