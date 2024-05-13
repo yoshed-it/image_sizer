@@ -36,32 +36,32 @@ current_directory = os.getcwd()
 
 # Get files in whatever directory the images are stored in.
 # TODO use add to PATH to get the cwd and runt he script globaly
-
+# TODO Add in the "do doop, doo doop" noise
 
 image_store = []
 for files in os.listdir('images'):
     image_store.append(os.path.join('images', files))
 
-
+print("Image Store Array", image_store)
 
 
 def resize_image():
-    size = 256, 256
-    os.makedirs(name='Resized Images')
+    new_image_size = (256, 256)
     for images in image_store:
-        resized_images = os.path.splitext(images)[0] + "-256.png"
-        if images != resized_images:
+        image_output_filename = os.path.splitext(images)[0] + "-256.png"  ##HERE CHANGE VARIABLE
+        if images != image_output_filename:
             try:
                 with Image.open(images) as im:
-                    im.resize(size, Image.Resampling.NEAREST)
-                    im.save(resized_images, "PNG")
-                    print(images, im.format, f"{im.size}")
-                    return images
+                    image_resizing_action = im.resize(size=new_image_size, resample=Image.Resampling.NEAREST)
+                    image_resizing_action.save(image_output_filename, "PNG")
+                    print(image_output_filename, im.format, f"{im.size}")
+
             except OSError:
                 pass
 
-def make_dir():
-    os.makedirs(name="Resized Images")
 
-# resize_image()
-make_dir()
+# def make_dir():
+#     os.makedirs(name="Resized Images")
+
+resize_image()
+# make_dir()
