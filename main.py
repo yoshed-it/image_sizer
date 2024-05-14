@@ -21,7 +21,6 @@ Program Exited in 3s after processing n images.
 """
 
 
-
 # current_directory = os.getcwd()
 # current_directory_contents = os.listdir('images')
 
@@ -44,8 +43,8 @@ def main():
 def make_new_image_directory_and_save(source_directory):
     new_directory = "resized_images"
     try:
-        print(f"File Path: {new_directory}")
-        os.mkdir(path=new_directory, exist_ok=True)
+        print(f"File Path:{source_directory}{new_directory}")
+        os.makedirs(name=new_directory, exist_ok=True)
         return new_directory
     except FileExistsError:
         print(f"The directory {source_directory} already exists.")
@@ -56,19 +55,23 @@ def make_new_image_directory_and_save(source_directory):
 def resize_image(source_directory, image_size):
     new_directory_path = make_new_image_directory_and_save(source_directory)
     image_store = [os.path.join(source_directory, image_file) for image_file in os.listdir(source_directory)]
+
     for image_path in image_store:
         file_name, ext = os.path.splitext(image_path)
         image_output_filename = f"{file_name}_{image_size}{ext}"
         new_image_size = image_size, image_size
+
         if image_path != image_output_filename:
             try:
                 with Image.open(image_path) as im:
                     resized_image = im.resize(new_image_size, Image.Resampling.NEAREST)
-                    resized_image.save(image_output_filename)
-                    print(image_output_filename)
+                    resized_image.save(os.path.join(new_directory_path, image_output_filename))
+                    print("IM HERE AT THE BOTTOM", os.path.join(new_directory_path, image_output_filename))
             except OSError as error:
                 print(f"couldn't process {image_path}, {error}")
 
+
+# THIS DOESN'T WORK IN THE FUCKING WAY I WANT AND I WILL BURN EVERYTHING DOWN
 
 if __name__ == "__main__":
     main()
