@@ -21,7 +21,7 @@ class UserInput:
 
     def get_user_img_size(self):
         while True:
-            get_img_size = input("What ill be the new image size??   ")
+            get_img_size = input("What will be the new image size(please enter only a number of pixels)?   ")
             try:
                 validated_image_size = int(get_img_size)
                 if validated_image_size > 0:
