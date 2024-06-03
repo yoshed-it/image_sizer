@@ -1,5 +1,6 @@
 import os
-
+import simpleaudio as sa
+import time
 
 class UserInput:
     def __init__(self):
@@ -29,7 +30,25 @@ class UserInput:
                     return True
             except ValueError:
                 print("Please provide a valid number")
-
+                
+    def sound_on(self):
+        while True:
+            ask_for_sound = input("Would you like Sound with That? (yes/no): ")
+            if ask_for_sound.lower() in ['n', 'no']:
+                print("Continuing with image resizing")
+                return False
+            elif ask_for_sound.lower() in ['y', 'yes']:
+                sound_file = "printer.wav"
+                if os.path.exists(sound_file):
+                    wave_obj = sa.WaveObject.from_wave_file(sound_file)
+                    wave_obj.play()  # Start playing the sound
+                    time.sleep(7)
+                    return True
+                else:
+                    print("Please enter 'yes' or 'no'.")
+                
+        
+        
     def get_user_input(self):
         if self.get_user_directory() and self.get_user_img_size():
             return True
