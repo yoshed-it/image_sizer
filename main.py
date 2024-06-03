@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+import re
 from user_input import UserInput
 
 # current_directory = os.getcwd()
@@ -10,6 +11,11 @@ from user_input import UserInput
 # TODO Add in the "do doop, doo doop" noise
 
 user_input = UserInput()
+
+def regex_magic_maker(replacement_text, filename):   #Makes Regex Magic!
+    pattern = re.compile(r"([_-]?\d+x\d+)|[_-]?\d+[Kk]")
+    sanatized_filename = pattern.sub(replacement_text, filename)
+    return sanatized_filename
 
 def main():
     if user_input.get_user_input():
@@ -45,7 +51,10 @@ def resize_image(source_directory, image_size):
     for image_path in image_store:
         base_name = os.path.basename(image_path)
         file_name, ext = os.path.splitext(base_name)
-        image_output_filename = f"{file_name}_{image_size}{ext}"
+        
+        regex_magic = regex_magic_maker('', file_name)
+        image_output_filename = f"{regex_magic}_{image_size}{ext}"
+        
         new_image_size = image_size, image_size
 
         if image_path != image_output_filename:
