@@ -9,9 +9,7 @@ Simple CLI tool for image resizing
 1. Navigate to the script directory.
 2. Install dependencies:
 3. ```
-   pip install pillow
-   pip install simpleaudio
-
+ pip install -r requirements.txt
    ```
 4. Run the script with one of the following commands, depending on your pip version:
     ```sh
