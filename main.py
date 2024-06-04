@@ -3,12 +3,7 @@ import os
 import re
 from user_input import UserInput
 
-# TODO use add to PATH to get the cwd and run the script globaly
-
-
 user_input = UserInput()
-
-
 
 def main():
     if user_input.get_user_input():
@@ -21,8 +16,8 @@ def main():
 
 def regex_magic_maker(replacement_text, filename):   #Makes Regex Magic!
     pattern = re.compile(r"([_-]?\d+x\d+)|[_-]?\d+[Kk]")
-    sanatized_filename = pattern.sub(replacement_text, filename)
-    return sanatized_filename
+    sanitized_filename = pattern.sub(replacement_text, filename)
+    return sanitized_filename
 
 def make_new_image_directory_and_save():   #Makes a new directory for images to be saved in
     new_directory = os.path.join(user_input.source_directory, "resized_images")
