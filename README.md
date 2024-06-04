@@ -8,10 +8,10 @@ Simple CLI tool for image resizing
 ## How to Run:
 1. Navigate to the script directory.
 2. Install dependencies:
-3. ```
- pip install -r requirements.txt
    ```
-4. Run the script with one of the following commands, depending on your pip version:
+   pip install -r requirements.txt
+   ```
+3. Run the script with one of the following commands, depending on your pip version:
     ```sh
     pip main.py
     pip3 main.py
